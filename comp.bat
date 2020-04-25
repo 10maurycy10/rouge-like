@@ -1,0 +1,1 @@
+gcc main.c -o run.exe -Wall -lcurses2
