@@ -7,7 +7,7 @@
 
 #define Tags TagType tags;
 typedef uint64_t TagType;
-#define tagGet(obj,tag) (int)(!!obj.tags & (1 << tag))
+#define tagGet(obj,tag) (int)((obj.tags & (1 << tag)) | 0)
 #define tagSet(obj,tag) (obj.tags = obj.tags | (1 << tag))
 #define tagClear(obj,tag) (obj.tags = obj.tags & ~(1 << tag))
 #define tagForce(obj,tag,val) val?tagSet(obj,tag):tagClear(obj,tag)
@@ -37,17 +37,22 @@ struct Test {
 int main() {
 
   initscr();
+  keypad(stdscr, TRUE);
+  start_color();
 
-  addStaticMessage("= T H E D U N G O N S O F D O O M =");
+  addStaticMessage("= T H E = D U N G O N S = O F = D O O M =");
 
   genMap();
+
+  movePlayerABS(1,1);
   render();
+
   while (handleIo()) {
     render();
   }
 
-
   endwin();
+
 
   return 0;
 };

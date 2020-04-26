@@ -1,11 +1,11 @@
 #include <curses.h>
 #include "map.c"
-typedef struct Message {
+typedef struct Message { //message wraper
     struct Message* next;
-    char* text
+    char* text;
 } Message;
 
-Message* nextMessage = NULL;
+Message* nextMessage = NULL; //parts of FIFO
 Message* lastMessage = NULL;
 
 void addMessage(char* mess) { //GOTCHA: mess WILL be freed when dispalyed
@@ -36,7 +36,7 @@ bool askYN(char *string) {
     }
     move(0,0);
     clrtoeol();
-    mvprintw(0, 0, "enter 'y' or 'n'.");
+    mvprintw(0, 0, "Enter 'y' or 'n'.");
     getch();
     move(0,0);
     clrtoeol();
@@ -65,8 +65,11 @@ void doMessages() {
   lastMessage = NULL;
 }
 
+#include "player.c"
+
 void render() {
   doMessages();
-  drawMap();
+  drawMap(playerX,playerY);
+  drawPlayer(playerX,playerY);
   refresh();
 }
