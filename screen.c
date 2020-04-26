@@ -22,6 +22,7 @@ void addMessage(char* mess) { //GOTCHA: mess WILL be freed when dispalyed
 }
 
 bool askYN(char *string) {
+  attrset(COLOR_PAIR(0));
   move(0,0);
   clrtoeol();
   mvprintw(0, 0, string);
@@ -49,15 +50,17 @@ void addStaticMessage(const char* mess) {
 }
 
 void doMessages() {
+  attrset(COLOR_PAIR(0));
   move(0,0);
   clrtoeol();
   while (nextMessage) {
     move(0,0);
+    clrtoeol();
     printw(nextMessage->next?"%s __MORE__":"%s",nextMessage->text);
-    refresh();
     free(nextMessage->text);
+    refresh();
     if (nextMessage->next)
-      while (getchar() != ' ') ;
+      while (getchar() != 'X') ;
     Message *next = nextMessage->next;
     free(nextMessage);
     nextMessage = next;

@@ -4,13 +4,16 @@ bool handleIo() {
       return !askYN("Realy quit? [Y/N]:");
     case '.': //do nothing
       break;
-    case 'R': //reset curses
+    case 0x12: //reset curses
       endwin();
+      c_init();
       initscr();
       break;
-    case 'N':
-       printw("\07");
-       break;
+    case '2':
+       addStaticMessage("TEST: 2");
+    case '1':
+      addStaticMessage("TEST: 1");
+      break;
 
     case KEY_UP:    movePlayer(0,-1); break;
     case KEY_DOWN:  movePlayer(0, 1); break;

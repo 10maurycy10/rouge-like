@@ -22,7 +22,7 @@ void revealTyle(int x,int y, bool r) { //reval 1 tyile if dark recurcive if not
         if (tagGet(map[x][y],TYLE_UNCOVERED) && tagGet(map[x][y],TYLE_VIS)) return;
         tagSet(map[x][y], TYLE_UNCOVERED);
         tagSet(map[x][y], TYLE_VIS);
-        if ((!tagGet(map[x][y],TYLE_DARK)) && r && (!tagGet(map[x][y],TYLE_IMPASABLE))) {
+        if (((!tagGet(map[x][y],TYLE_DARK)) && r && (!tagGet(map[x][y],TYLE_IMPASABLE))) || !r) {
             revealTyle(x,y + 1,1);
             revealTyle(x,y - 1,1);
             revealTyle(x + 1,y,1);
@@ -55,6 +55,8 @@ void genMap() {
             if (t == '.')
                 tagSet(map[x][y],TYLE_FLOOR);
         }
+
+    movePlayerABS(1,1);
 }
 
 void drawMap(int px,int py) {
@@ -67,6 +69,7 @@ void drawMap(int px,int py) {
                 if (tagGet(t,TYLE_FLOOR) && !tagGet(t,TYLE_VIS)) //if not vis and is floor hide tyle
                     c = ' ';
             }
+            attrset(tagGet(t,TYLE_VIS)?COLOR_PAIR(0):COLOR_PAIR(1));
             mvaddch(y + MAP_OFSET_Y, x + MAP_OFSET_X, c);
         }
 }

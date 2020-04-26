@@ -22,29 +22,27 @@ void* mallocFAKE(int s) {
     return x;
 }
 #define malloc mallocFAKE
+#include <curses.h>
 
-#include "screen.c"
-#include "keypress.c"
-
-enum {
-    TAG_TEST
-};
-
-struct Test {
-  Tags
-} test;
-
-int main() {
-
+void c_init() {
   initscr();
   keypad(stdscr, TRUE);
   start_color();
 
+  init_pair(1,COLOR_WHITE,COLOR_BLUE);
+}
+
+#include "screen.c"
+#include "keypress.c"
+
+int main() {
+
   addStaticMessage("= T H E = D U N G O N S = O F = D O O M =");
+
+  c_init();
 
   genMap();
 
-  movePlayerABS(1,1);
   render();
 
   while (handleIo()) {

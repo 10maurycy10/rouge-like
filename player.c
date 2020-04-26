@@ -11,7 +11,7 @@ void movePlayerABS(int nx, int ny) {
         playerX = nx;
         playerY = ny;
 
-        revealTyle(nx, ny , 1);
+        revealTyle(nx, ny , 0);
     }
 }
 
@@ -23,5 +23,6 @@ void movePlayer(int xd,int yd) { //move player by xd yd
 }
 
 void drawPlayer() { //just draw the player
+    attrset(COLOR_PAIR(0));
     mvaddch(playerY + MAP_OFSET_Y,playerX + MAP_OFSET_X, TEXTURE_PLAYER);
 }
