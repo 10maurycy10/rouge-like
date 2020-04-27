@@ -1,3 +1,5 @@
+#include "main.h"
+
 bool handleIo() {
   switch (getch()) {
     case 'Q': //quit

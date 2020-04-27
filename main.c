@@ -29,6 +29,8 @@ void c_init() {
   keypad(stdscr, TRUE);
   start_color();
 
+  curs_set(0);
+
   init_pair(1,COLOR_WHITE,COLOR_BLUE);
 }
 
