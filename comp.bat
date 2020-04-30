@@ -1,1 +1,1 @@
-gcc main.c -o run.exe -Wall -lcurses2
+gcc main.c -o run.exe -Wall -lcurses2 -pipe %*

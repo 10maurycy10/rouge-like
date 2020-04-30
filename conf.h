@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 
 enum {
     TEXTURE_PLAYER    = '@',
@@ -15,6 +16,9 @@ enum {
 #define MAP_X 40
 #define MAP_Y 20
 
+#define ROOMS_X 3
+#define ROOMS_Y 3
+
 //char initMap[MAP_Y][MAP_X+1] = {
 //   "-------- ------",
 //   "|......| |....|",
@@ -25,3 +29,31 @@ enum {
 //   "  ####+,,,|    ",
 //   "      -----    ",
 //};
+
+enum {TYLE_UNCOVERED, TYLE_DARK, TYLE_IMPASABLE, TYLE_FLOOR, TYLE_VIS,};
+
+//TYLE_UNCOVERED whether is will be rendered at all
+//TYLE_DARK       agasent uncover alny
+//TYLE_IMPASSABLE block movemernt
+//TYLE_FLOOR      not rendered when outside vis
+//TYLE_VIS  curenty visable (recomputer 1 p frame)
+
+//walls need to be       TYLE_DARK and TYLE_IMPASSABLE
+//passages and doors are TYLE_DARK
+//floors are             TYLE_FLOOR
+//passage lining is      TYLE_IMPASABLE and TYLE_DARK
+
+
+struct Tyle {
+  char    Texture;
+  uint8_t tags;
+};
+
+struct Tyle map[MAP_X][MAP_Y];
+
+
+#ifndef bool
+#define bool uint8_t
+#define true 0xff
+#define false 0
+#endif
