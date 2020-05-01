@@ -22,7 +22,7 @@ enum {
 #define ROOMS_Y 3
 
 #ifndef INV_LIM
-#define INV_LIM 1
+#define INV_LIM 8
 #endif
 
 enum {TYLE_UNCOVERED, TYLE_DARK, TYLE_IMPASABLE, TYLE_FLOOR, TYLE_VIS,};

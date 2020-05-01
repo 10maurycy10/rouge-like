@@ -128,6 +128,11 @@ void fillRooms() {
             linkRoomV(x,y,x,y + 1);
         }
 }
+
+#ifndef WindowsXP
+#define time_t long int //todo THIS!!!!
+#endif
+
 void genMap() {
     time_t x;
     time(&x);
@@ -145,7 +150,6 @@ void genMap() {
 
     setUpRooms();
     fillRooms();
-
     for (int x = 0; x < MAP_X; x++)
         for (int y = 0; y < MAP_Y; y++) {
             if (map[x][y].Texture == TEXTURE_EMPTY) {
