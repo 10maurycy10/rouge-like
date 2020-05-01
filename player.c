@@ -14,15 +14,18 @@ void pickup(Item *d) {
     if (InvCnt > INV_LIM - 1)
         return;
     #endif
+    //if (*d)
+    //    pickup(&(*d)->next);
     char* name = getName(*d);
     char* mess = malloc(1024);
-    sprintf(mess,"You pick up a %s",name); //TODO BUFFER
+    snprintf(mess,1024,"You pick up a %s",name);
     free(name);
     addMessage(mess);
     InvCnt ++;
     Item that = unlinkI(d);
     that -> next = Inventory;
     Inventory = that;
+
 }
 
 
@@ -70,7 +73,11 @@ void movePlayerABS(int nx, int ny) {
     struct Tyle t = map[nx][ny];
 
     if (!tagGet(t, TYLE_IMPASABLE)) {
-        pickup(&map[nx][ny].items);
+        Item old = NULL;
+        while (map[nx][ny].items != old) {
+            old = map[nx][ny].items;
+            pickup(&map[nx][ny].items);
+        }
         hideTyles();
         playerX = nx;
         playerY = ny;

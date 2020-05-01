@@ -11,11 +11,15 @@ bool handleIo() {
       c_init();
       initscr();
       break;
-    case '2':
-       addStaticMessage("TEST: 2");
     case '1':
-      addStaticMessage("TEST: 1");
+      genItem(&map[playerX][playerY].items);
       break;
+    case '2':
+      addStaticMessage("0");
+      addStaticMessage("1");
+      addStaticMessage("2");
+      addStaticMessage("3");
+    break;
 
     case KEY_UP:    movePlayer(0,-1); break;
     case KEY_DOWN:  movePlayer(0, 1); break;

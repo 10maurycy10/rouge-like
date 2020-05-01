@@ -22,6 +22,7 @@ void addMessage(char* mess) { //GOTCHA: mess WILL be freed when dispalyed
     lastMessage = self;
   } else {
     lastMessage->next = self;
+    lastMessage = self;
   }
 }
 
@@ -64,7 +65,7 @@ void doMessages() {
     free(nextMessage->text);
     refresh();
     if (nextMessage->next)
-      while (getchar() != ' ') ;
+      while (getch() != ' ') ;
     Message *next = nextMessage->next;
     free(nextMessage);
     nextMessage = next;
