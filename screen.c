@@ -70,6 +70,19 @@ void doMessages() {
   lastMessage = NULL;
 }
 
+int getint() {
+  char in;
+  int ac = 0;
+  while (!((in = getch()) < '0' || in > '9')) {
+    addch(in);
+    ac *= 10;
+    ac = in - '0';
+  }
+  if (in == KEY_EXIT)
+    return -1;
+  return ac;
+}
+
 #include "player.c"
 
 void render() {

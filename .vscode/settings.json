@@ -6,5 +6,18 @@
     ],
     "cSpell.ignoreWords": [
         "x"
-    ]
+    ],
+    "files.associations": {
+        "*.tcc": "c",
+        "limits": "c",
+        "numeric": "c",
+        "streambuf": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c",
+        "xhash": "c",
+        "xlocale": "c",
+        "xlocinfo": "c",
+        "xtree": "c"
+    }
 }

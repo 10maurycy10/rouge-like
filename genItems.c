@@ -1,8 +1,8 @@
 #include "item.c"
 
-void genItems(Item* where) {
+void genItem(Item* where) {
 
-    printw("%d ",total_rarity);
+    
 
     int item_x = rand() % total_rarity;
 
@@ -18,4 +18,24 @@ void genItems(Item* where) {
     }
 
     mkItem(where, item_id, rand() % Length(item_colors),rand() % Length(item_qalatys));
+}
+
+void placeItems() {
+    for (int x = 0; x < ROOMS_X; x++)
+        for (int y = 0; y < ROOMS_Y; y++) {
+            int minX = roomPlacement[x][y][0].x + 1;//compute boundig box
+            int minY = roomPlacement[x][y][0].y + 1;
+            int maxX = roomPlacement[x][y][1].x - 1;
+            int maxY = roomPlacement[x][y][1].y - 1;
+
+            int offsetx = (rand() % (maxX - minX));
+            int offsety = (rand() % (maxY - minY));
+
+            int pX = minX + offsetx;
+            int pY = minY + offsety;
+
+            printf("placing at max+%d max+%d +%d +%d\n",(maxX - minX),(maxY - minY),offsetx,offsety);
+
+            genItem(&map[pX][pY].items);
+        }
 }

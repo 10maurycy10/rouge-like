@@ -46,36 +46,36 @@ void addWall(int x, int y, char ch) {
 }
 
 void fillRoom(int sx, int sy, int ex, int ey, bool dark) {
-    addWall(sx,sy,'-');
-    addWall(sx,ey,'-');
-    addWall(ex,sy,'-');
-    addWall(ex,ey,'-');
+    addWall(sx,sy,TEXTURE_WALL_SIDE);
+    addWall(sx,ey,TEXTURE_WALL_SIDE);
+    addWall(ex,sy,TEXTURE_WALL_SIDE);
+    addWall(ex,ey,TEXTURE_WALL_SIDE);
 
     for (int i = sy; i < (ey + 1); i ++)
-        addWall(sx, i, '|');
+        addWall(sx, i, TEXTURE_WALL_TOP);
     for (int i = sy; i < (ey + 1); i ++)
-        addWall(ex, i, '|');
+        addWall(ex, i, TEXTURE_WALL_TOP);
     for (int i = sx; i < (ex + 1); i ++)
-        addWall(i, sy, '-');
+        addWall(i, sy, TEXTURE_WALL_SIDE);
     for (int i = sx; i < (ex + 1); i ++)
-        addWall(i, ey, '-');
+        addWall(i, ey, TEXTURE_WALL_SIDE);
 
     for (int x = sx + 1; x < ex; x ++)
         for (int y = sy + 1; y < ey; y ++) {
-            map[x][y].Texture = '.';
+            map[x][y].Texture = TEXTURE_FLOOR;
             tagSet(map[x][y],TYLE_FLOOR);
             if (dark) tagSet(map[x][y],TYLE_DARK);
         }
 }
 
 void addDoor(int x, int y) {
-    map[x][y].Texture = '+';
+    map[x][y].Texture = TEXTURE_DOOR;
     tagClear(map[x][y],TYLE_IMPASABLE);
 }
 
 void addPassage(int x, int y) {
-    printf("x: %d y:%d",x,y);
-    map[x][y].Texture = '#';
+    //printf("x: %d y:%d",x,y);
+    map[x][y].Texture = TEXTURE_PASSAGE;
     tagSet(map[x][y],TYLE_DARK);
 }
 
@@ -128,10 +128,9 @@ void fillRooms() {
             linkRoomV(x,y,x,y + 1);
         }
 }
-
 void genMap() {
     time_t x;
-    time(&x);
+    ctime(&x);
     srand(x);
     for (int x = 0; x < MAP_X; x++)
         for (int y = 0; y < MAP_Y; y++) {
@@ -139,7 +138,9 @@ void genMap() {
             #ifdef CONF_UNCOVER_ALL
             tagSet(map[x][y],TYLE_UNCOVERED);
             #endif
-            map[x][y].Texture = ' ';
+            while (map[x][y].items)
+                rmItem(&map[x][y].items);
+            map[x][y].Texture = TEXTURE_EMPTY;
         }
 
     setUpRooms();
@@ -147,7 +148,7 @@ void genMap() {
 
     for (int x = 0; x < MAP_X; x++)
         for (int y = 0; y < MAP_Y; y++) {
-            if (map[x][y].Texture == ' ') {
+            if (map[x][y].Texture == TEXTURE_EMPTY) {
                 tagSet(map[x][y], TYLE_IMPASABLE);
                 tagSet(map[x][y], TYLE_DARK);
             }
@@ -155,4 +156,5 @@ void genMap() {
     movePlayerABS(start_pos.x,start_pos.y);
 
     
+
 }

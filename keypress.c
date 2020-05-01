@@ -22,6 +22,14 @@ bool handleIo() {
     case KEY_LEFT:  movePlayer(-1,0); break;
     case KEY_RIGHT: movePlayer(1, 0); break;
 
+    case 'i':
+      printInv();
+      break;
+
+    case 'd':
+      drop();
+      break;
+
     default: //error
       addStaticMessage("Unrecognized Command.");
       break;

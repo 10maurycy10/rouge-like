@@ -1,1 +1,2 @@
 CONF_UNCOVER_ALL : uncover all tiles to start
+DEBUG_VIS        : show vis

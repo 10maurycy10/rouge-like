@@ -6,8 +6,6 @@
 
 #include "item.c"
 
-Item item = NULL;
-
 void revealTyle(int x,int y, bool r) { //reval 1 tyile if dark recurcive if not
     if (x > -1 && x < MAP_X && y > -1 && y < MAP_Y) {
         if (tagGet(map[x][y],TYLE_UNCOVERED) && tagGet(map[x][y],TYLE_VIS)) return;
@@ -41,16 +39,21 @@ void hideTyles() {
 void drawMap(int px,int py) {
     for (int x = 0; x < MAP_X; x++)
         for (int y = 0; y < MAP_Y; y++) {
-            char c = ' ';
+            char c = TEXTURE_EMPTY;
             struct Tyle t = map[x][y];
             if (tagGet(t,TYLE_UNCOVERED)) {
                 c = map[x][y].Texture;
                 if (tagGet(t,TYLE_FLOOR) && !tagGet(t,TYLE_VIS)) //if not vis and is floor hide tyle
-                    c = ' ';
+                    c = TEXTURE_EMPTY;
             }
-            //attrset(tagGet(t,TYLE_VIS)?COLOR_PAIR(0):COLOR_PAIR(1));
             attrset(COLOR_PAIR(0));
+            #ifdef DEBUG_VIS
+            attrset(tagGet(t,TYLE_VIS)?COLOR_PAIR(0):COLOR_PAIR(1));
+            #endif
             mvaddch(y + MAP_OFSET_Y, x + MAP_OFSET_X, c);
+            move(y + MAP_OFSET_Y, x + MAP_OFSET_X);
+            if (tagGet(t,TYLE_VIS))
+                drawItem(map[x][y].items);
         }
 
     //genItems(&item);

@@ -17,12 +17,12 @@ typedef uint64_t TagType;
 void* mallocFAKE(int s) {
     void* x = malloc(s);
     if (!x) {
-        printf("ERROR: out of memory!!");
+        printf("ERROR: YOU SHASHED THE HEAP! STOP _NOW_\n");
         _Exit(1);
     }
     return x;
 }
-#define malloc mallocFAKE
+//#define malloc mallocFAKE
 #include <curses.h>
 
 void c_init() {
@@ -42,10 +42,15 @@ int main() {
 
   addStaticMessage("= T H E = D U N G O N S = O F = D O O M =");
 
-  c_init();
 
   initItems();
   genMap();
+  placeItems();
+  c_init();
+
+  InvCnt = 0;
+  while (Inventory)
+      rmItem(&Inventory);
 
   render();
 
