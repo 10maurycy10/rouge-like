@@ -9,8 +9,10 @@ Item Inventory = NULL;
 void pickup(Item *d) {
     if (!*d)
         return;
+    #ifndef INF_INV
     if (InvCnt > 1)
         return;
+    #endif
     InvCnt ++;
     Item that = unlinkI(d);
     that -> next = Inventory;

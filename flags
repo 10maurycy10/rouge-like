@@ -1,2 +1,6 @@
+-D* or add to conf.h and rebuild
+
+
 CONF_UNCOVER_ALL : uncover all tiles to start
 DEBUG_VIS        : show vis
+INF_INV          : Remove inverntory limit
