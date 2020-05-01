@@ -10,7 +10,7 @@ void pickup(Item *d) {
     if (!*d)
         return;
     #ifndef INF_INV
-    if (InvCnt > 1)
+    if (InvCnt > INV_LIM - 1)
         return;
     #endif
     InvCnt ++;

@@ -130,7 +130,7 @@ void fillRooms() {
 }
 void genMap() {
     time_t x;
-    ctime(&x);
+    time(&x);
     srand(x);
     for (int x = 0; x < MAP_X; x++)
         for (int y = 0; y < MAP_Y; y++) {

@@ -62,7 +62,7 @@ void doMessages() {
     free(nextMessage->text);
     refresh();
     if (nextMessage->next)
-      while (getchar() != 'X') ;
+      while (getchar() != ' ') ;
     Message *next = nextMessage->next;
     free(nextMessage);
     nextMessage = next;

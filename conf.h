@@ -21,6 +21,9 @@ enum {
 #define ROOMS_X 3
 #define ROOMS_Y 3
 
+#ifndef INV_LIM
+#define INV_LIM 1
+#endif
 
 enum {TYLE_UNCOVERED, TYLE_DARK, TYLE_IMPASABLE, TYLE_FLOOR, TYLE_VIS,};
 //TYLE_UNCOVERED whether is will be rendered at all

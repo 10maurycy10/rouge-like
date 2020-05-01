@@ -27,6 +27,7 @@ void placeItems() {
             int minY = roomPlacement[x][y][0].y + 1;
             int maxX = roomPlacement[x][y][1].x - 1;
             int maxY = roomPlacement[x][y][1].y - 1;
+            printf("placing at max+%d max+%d\n",(maxX - minX),(maxY - minY));
 
             int offsetx = (rand() % (maxX - minX));
             int offsety = (rand() % (maxY - minY));
@@ -34,7 +35,6 @@ void placeItems() {
             int pX = minX + offsetx;
             int pY = minY + offsety;
 
-            printf("placing at max+%d max+%d +%d +%d\n",(maxX - minX),(maxY - minY),offsetx,offsety);
 
             genItem(&map[pX][pY].items);
         }
