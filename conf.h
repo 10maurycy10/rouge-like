@@ -5,9 +5,9 @@ enum {
     TEXTURE_PLAYER    = '@',
     TEXTURE_WALL_SIDE = '-',
     TEXTURE_WALL_TOP  = '|',
-    TEXTURE_PASSAGE   = '+',
+    TEXTURE_PASSAGE   = '#',
     TEXTURE_FLOOR     = '.',
-    TEXTURE_DOOR      = '#',
+    TEXTURE_DOOR      = '+',
     TEXTURE_ITEM      = '^',
     TEXTURE_EMPTY     = ' ',
 };
@@ -25,6 +25,8 @@ enum {
 #define INV_LIM 8
 #endif
 
+enum COLORS {C_RED = 1, C_PINK, C_blue, C_green, C_brown, C_gray};
+
 enum {TYLE_UNCOVERED, TYLE_DARK, TYLE_IMPASABLE, TYLE_FLOOR, TYLE_VIS,};
 //TYLE_UNCOVERED whether is will be rendered at all
 //TYLE_DARK       agasent uncover alny
@@ -36,9 +38,14 @@ enum {TYLE_UNCOVERED, TYLE_DARK, TYLE_IMPASABLE, TYLE_FLOOR, TYLE_VIS,};
 //floors are             TYLE_FLOOR
 //passage lining is      TYLE_IMPASABLE and TYLE_DARK
 
+struct item_color {
+    char* name;
+    int   render;
+};
+
 typedef struct Item {
     int type;
-    char* color;
+    struct item_color color;
     char* qality;
     struct Item* next;
     int x;

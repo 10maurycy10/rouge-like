@@ -2,6 +2,8 @@
 #include "map.c"
 #include "main.h"
 
+
+
 typedef struct Message { //message wraper
     struct Message* next;
     char* text;

@@ -129,7 +129,7 @@ void fillRooms() {
         }
 }
 
-#ifndef WindowsXP
+#ifdef WindowsXP
 #define time_t long int //todo THIS!!!!
 #endif
 

@@ -7,11 +7,11 @@
 
 #define Tags TagType tags;
 typedef uint64_t TagType;
-#define tagGet(obj,tag) (int)((obj.tags & (1 << tag)) | 0)
-#define tagSet(obj,tag) (obj.tags = obj.tags | (1 << tag))
-#define tagClear(obj,tag) (obj.tags = obj.tags & ~(1 << tag))
+#define tagGet(obj,tag) (int)(((obj).tags & (1 << tag)) | 0)
+#define tagSet(obj,tag) ((obj).tags = obj.tags | (1 << tag))
+#define tagClear(obj,tag) ((obj).tags = obj.tags & ~(1 << tag))
 #define tagForce(obj,tag,val) val?tagSet(obj,tag):tagClear(obj,tag)
-#define tagReset(obj) (obj.tags = 0)
+#define tagReset(obj) ((obj).tags = 0)
 #define encodeTag(tag) (1 << tag)
 
 void* mallocFAKE(int s) {
@@ -42,11 +42,17 @@ int main() {
 
   addStaticMessage("= T H E = D U N G O N S = O F = D O O M =");
 
-
   initItems();
   genMap();
   placeItems();
   c_init();
+
+  init_pair(C_blue, COLOR_BLUE, COLOR_BLACK);
+  init_pair(C_green, COLOR_GREEN, COLOR_BLACK);
+  init_pair(C_PINK, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(C_RED, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(C_brown,COLOR_YELLOW, COLOR_BLACK);
+  init_pair(C_gray,COLOR_BLACK, COLOR_WHITE);
 
   InvCnt = 0;
   while (Inventory)

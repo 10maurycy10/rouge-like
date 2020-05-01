@@ -1,4 +1,5 @@
 #include "conf.h"
+#include <stdio.h>
 
 int playerX = 1;
 int playerY = 1;
@@ -13,6 +14,11 @@ void pickup(Item *d) {
     if (InvCnt > INV_LIM - 1)
         return;
     #endif
+    char* name = getName(*d);
+    char* mess = malloc(1024);
+    sprintf(mess,"You pick up a %s",name); //TODO BUFFER
+    free(name);
+    addMessage(mess);
     InvCnt ++;
     Item that = unlinkI(d);
     that -> next = Inventory;
