@@ -152,6 +152,7 @@ void genMap() {
                 tagSet(map[x][y], TYLE_DARK);
             }
         }
-
     movePlayerABS(start_pos.x,start_pos.y);
+
+    
 }

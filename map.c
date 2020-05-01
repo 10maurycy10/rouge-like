@@ -4,6 +4,9 @@
 #include "conf.h"
 #include "vect.h"
 
+#include "item.c"
+
+Item item = NULL;
 
 void revealTyle(int x,int y, bool r) { //reval 1 tyile if dark recurcive if not
     if (x > -1 && x < MAP_X && y > -1 && y < MAP_Y) {
@@ -29,18 +32,11 @@ void hideTyles() {
             tagClear(map[x][y],TYLE_VIS);
         }
 }
-/*
-MAP LAYOUT
 
-1 2 3
-4 5 6
-7 8 9
 
-4 = passages
-
-*/
 
 #include "genRoom.c"
+#include "genItems.c"
 
 void drawMap(int px,int py) {
     for (int x = 0; x < MAP_X; x++)
@@ -56,4 +52,8 @@ void drawMap(int px,int py) {
             attrset(COLOR_PAIR(0));
             mvaddch(y + MAP_OFSET_Y, x + MAP_OFSET_X, c);
         }
+
+    //genItems(&item);
+    move(0,0);
+    //printItem(item);
 }

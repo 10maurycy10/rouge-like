@@ -12,6 +12,7 @@ typedef uint64_t TagType;
 #define tagClear(obj,tag) (obj.tags = obj.tags & ~(1 << tag))
 #define tagForce(obj,tag,val) val?tagSet(obj,tag):tagClear(obj,tag)
 #define tagReset(obj) (obj.tags = 0)
+#define encodeTag(tag) (1 << tag)
 
 void* mallocFAKE(int s) {
     void* x = malloc(s);
@@ -43,6 +44,7 @@ int main() {
 
   c_init();
 
+  initItems();
   genMap();
 
   render();
