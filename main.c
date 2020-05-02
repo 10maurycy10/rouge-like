@@ -24,6 +24,7 @@ void* mallocFAKE(int s) {
 }
 //#define malloc mallocFAKE
 #include <curses.h>
+#include "conf.h"
 
 void c_init() {
   initscr();
@@ -32,7 +33,12 @@ void c_init() {
 
   curs_set(0);
 
-  init_pair(1,COLOR_WHITE,COLOR_BLUE);
+  init_pair(C_blue, COLOR_BLUE, COLOR_BLACK);
+  init_pair(C_green, COLOR_GREEN, COLOR_BLACK);
+  init_pair(C_PINK, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(C_RED, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(C_brown,COLOR_YELLOW, COLOR_BLACK);
+  init_pair(C_gray,COLOR_BLACK, COLOR_WHITE);
 }
 
 #include "screen.c"
@@ -47,12 +53,7 @@ int main() {
   placeItems();
   c_init();
 
-  init_pair(C_blue, COLOR_BLUE, COLOR_BLACK);
-  init_pair(C_green, COLOR_GREEN, COLOR_BLACK);
-  init_pair(C_PINK, COLOR_MAGENTA, COLOR_BLACK);
-  init_pair(C_RED, COLOR_MAGENTA, COLOR_BLACK);
-  init_pair(C_brown,COLOR_YELLOW, COLOR_BLACK);
-  init_pair(C_gray,COLOR_BLACK, COLOR_WHITE);
+
 
   InvCnt = 0;
   while (Inventory)

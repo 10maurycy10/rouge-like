@@ -1,5 +1,6 @@
 #include "conf.h"
 #include <stdio.h>
+#include "asprintf.c"
 
 int playerX = 1;
 int playerY = 1;
@@ -17,8 +18,8 @@ void pickup(Item *d) {
     //if (*d)
     //    pickup(&(*d)->next);
     char* name = getName(*d);
-    char* mess = malloc(1024);
-    snprintf(mess,1024,"You pick up a %s",name);
+    char* mess;
+    asprintf(&mess,"You pick up a %s",name);
     free(name);
     addMessage(mess);
     InvCnt ++;

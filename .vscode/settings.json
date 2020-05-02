@@ -8,6 +8,7 @@
         "x"
     ],
     "files.associations": {
+        "*.h": "c",
         "*.tcc": "c",
         "limits": "c",
         "numeric": "c",
@@ -18,6 +19,8 @@
         "xhash": "c",
         "xlocale": "c",
         "xlocinfo": "c",
-        "xtree": "c"
+        "xtree": "c",
+        "cstdio": "c",
+        "xlocnum": "c"
     }
 }
